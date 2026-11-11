@@ -150,6 +150,9 @@ float lightSenorDataRaw = 0;
 
 
 //digital Pins
+const int powerPin = 1;
+int powerToggle = 0;
+
 const int resetTogglePin = 2;
 int resetToggle = 0;
 
@@ -255,6 +258,9 @@ void controlMappings() {
   intensityVarDataRaw = analogRead(intensityVarSliderPin);
   tempDataRaw = analogRead(tempDialPin);
 
+  powerToggle = digitalRead(powerPin);
+  resetToggle = digitalRead(resetTogglePin);
+
   //////////
 
   //Map raw here:
@@ -299,6 +305,12 @@ void controlMappings() {
   Serial.print(intensityMax);
   Serial.print(" , ");
   Serial.print(intensityVar);
+  Serial.print(" , ");
+  Serial.print(resetToggle);
+  Serial.print(" , ");
+  Serial.print(powerToggle);
+  Serial.print(" , ");
+  Serial.print(tempData);
   Serial.println();
   
   // Serial.print("temperature Cold Mapped: ");
