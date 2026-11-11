@@ -1,6 +1,7 @@
 /* This example will use the Arduino plotter to display a select number of wavelengths */
 
 #include <Adafruit_AS7341.h>
+#include <Wire.h>
 
 Adafruit_AS7341 as7341;
 
@@ -9,12 +10,14 @@ Adafruit_AS7341 as7341;
 void setup() {
   Serial.begin(115200);
 
+  Wire1.begin();
+
   // Wait for communication with the host computer serial monitor
   while (!Serial) {
     delay(1);
   }
   
-  if (!as7341.begin()){
+  if (!as7341.begin(AS7341_I2CADDR_DEFAULT, &Wire1)){
     Serial.println("Could not find AS7341");
     while (1) { delay(10); }
   }

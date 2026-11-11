@@ -1,10 +1,27 @@
-/* This example will check for light flicker effects. Household incandescent,
-   fluorescent and LED lights may have flickering */
+// /* This example will check for light flicker effects. Household incandescent,
+//    fluorescent and LED lights may have flickering */
 
 
 #include <Adafruit_AS7341.h>
 
 Adafruit_AS7341 as7341;
+
+
+// void setup()
+// {
+
+//   Serial.begin(115200);
+  
+// }
+
+// void loop()
+// {
+//   Serial.println("test");
+
+
+// }
+
+
 
 
 void setup() {
@@ -26,6 +43,8 @@ void setup() {
 
 void loop() {
   uint16_t flicker_freq = 0;
+
+  Serial.println("teststtst");
 
   flicker_freq = as7341.detectFlickerHz();
 
