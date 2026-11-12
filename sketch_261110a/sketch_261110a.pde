@@ -52,7 +52,7 @@ void draw() {
   
   time = millis() - startTime;
   //finalDuration = 60000;           //cycle duration///
-  finalDuration = (long)((36*pow(10, 5)) * 1);
+  finalDuration = (long)((36*pow(10, 5)) * serialVal[6] * 10);
   mappedTime = min(1, map(time, 0, finalDuration/speed, 0, 1));
   
   dist = width - 20;
@@ -124,9 +124,9 @@ void draw() {
   textSize(18);
   
   textAlign(LEFT, CENTER);
-  text("Cycle Duration: " + serialVal[6] + " hours", 110, 20);
-  text("Maxium Relative Intensity: " + serialVal[6], 110, 40);
-  text("Variation From Curve: " + serialVal[7], 110, 60);
+  text("Cycle Duration: " + (int)(serialVal[6]*10) + " hours", 110, 20);
+  text("Variation From Curve: " + serialVal[7], 110, 40);
+  text("Maxium Relative Intensity: " + serialVal[8], 110, 60);
   text("Relative Warmth: " + serialVal[11], 110, 80);
   
   textSize(15);
@@ -249,7 +249,7 @@ void showTempGraph()
    float y = graph(x, shape);
    //vertex(i, y * range);
    
-   stroke( multiLerp(kelvinColors, min(1, max(0, y - (serialVal[12] * 0.25)))));
+   stroke( multiLerp(kelvinColors, min(1, max(0, y + serialVal[11]*0.2 ))));
    line(i, 0, i, y * range);
   
   }
@@ -337,8 +337,8 @@ float graph(float x, int type)
 
 float func(float x)
 {
-  float H = 0.25 + (mouseX/(float)width)*0.75;
-  float L = H *  (mouseY/(float)height);
+  float H = 0.25 + (serialVal[8])*0.75;
+  float L = H *  (serialVal[7]);
  return ((H - L)*exp(-5.2 * pow( x - 0.5, 2 ))) + L;
   
 }

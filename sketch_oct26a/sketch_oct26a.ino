@@ -150,10 +150,10 @@ float lightSenorDataRaw = 0;
 
 
 //digital Pins
-const int powerPin = 1;
+const int powerPin = 7;
 int powerToggle = 0;
 
-const int resetTogglePin = 2;
+const int resetTogglePin = 13;
 int resetToggle = 0;
 
 
@@ -211,6 +211,9 @@ double CIE_1931_lookup[8][3] = {
 void setup() {
   Serial.begin(115200);
 
+  pinMode(powerPin, OUTPUT);  // sets the digital pin 13 as output
+  pinMode(resetTogglePin, OUTPUT);
+
   Wire1.begin();
  
 
@@ -264,7 +267,7 @@ void controlMappings() {
   //////////
 
   //Map raw here:
-  cycleDuration = map(cycleDurationRaw, 0.0, 1023.0, 0.0, 1.0);  //convert to hours: (cycleDuration * 10)   /////camp to whole hours / half hours ?????
+  cycleDuration = map(cycleDurationRaw, 0.0, 1023.0, 0.6, 1.0);  //convert to hours: (cycleDuration * 10)   /////camp to whole hours / half hours ?????
   intensityMax = map(intensityMaxDataRaw, 0.0, 1023.0, 0.0, 1.0);
   intensityVar = map(intensityVarDataRaw, 0.0, 1023.0, 0.0, 1.0);
   tempData = map(tempDataRaw, 0.0, 1023.0, -1.0, 1.0);  // negative means more cold, positive means more hot
