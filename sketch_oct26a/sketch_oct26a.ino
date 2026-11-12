@@ -314,6 +314,8 @@ void controlMappings() {
   Serial.print(powerToggle);
   Serial.print(" , ");
   Serial.print(tempData);
+  Serial.print(" , ");
+  Serial.print(finalKelvin);
   Serial.println();
   
   // Serial.print("temperature Cold Mapped: ");

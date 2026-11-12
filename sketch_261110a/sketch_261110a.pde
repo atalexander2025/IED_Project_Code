@@ -24,7 +24,7 @@ color[] kelvinColors =
 
 void setup() {
   size(900, 600);
-  serialVal = new float[12];
+  serialVal = new float[13];
   
   startTime = millis();
   
@@ -44,8 +44,8 @@ void setup() {
 }
 
 //buffer
-//| act clr | | kln tbl | | cycle lgth | | max | | var | | reset | | pr | | rltv tmp |
-//[0] [1] [2] [3] [4] [5]      [6]         [7]     [8]      [9]     [10]      [11]
+//| act clr | | kln tbl | | cycle lgth | | max | | var | | reset | | pr | | rltv tmp | | rltv tmp |
+//[0] [1] [2] [3] [4] [5]      [6]         [7]     [8]      [9]     [10]      [11]         [12]
 
 void draw() {
   background(0);
@@ -134,6 +134,7 @@ void draw() {
   text("Warm: Duty Cycle | Intensity | Adjusted: ", 370, 40);
   text("Clock Toggle:  " + (int)serialVal[9], 370, 60);
   text("Power Toggle:  " + (int)serialVal[10], 370, 80);
+  text("Temperature(K): " + (int)serialVal[12] + "K", 370, 100);
   
   
   //fill(255);
@@ -249,7 +250,7 @@ void showTempGraph()
    float y = graph(x, shape);
    //vertex(i, y * range);
    
-   stroke( multiLerp(kelvinColors, min(1, max(0, y + serialVal[11]*0.2 ))));
+   stroke( multiLerp(kelvinColors, min(1, max(0, y + serialVal[11]*0.1 ))));
    line(i, 0, i, y * range);
   
   }
